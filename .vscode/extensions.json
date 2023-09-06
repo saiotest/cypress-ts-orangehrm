@@ -1,0 +1,12 @@
+{
+    "recommendations": [
+        "rvest.vs-code-prettier-eslint",
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.vscode-typescript-next",
+
+        //* Cypress
+        "Shelex.vscode-cy-helper",
+        "ryansong-cy-snippets.cy-snippets",
+        "JosefBiehler.cypress-fixture-intellisense"
+    ]
+}
