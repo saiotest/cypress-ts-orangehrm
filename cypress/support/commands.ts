@@ -1,17 +1,32 @@
 /// <reference types="cypress" />
+
+import { loginPage } from '@pages/LoginPage';
+
 // ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
-//
-//
+
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add('getInputValue', (locator: Cypress.Chainable<JQuery<HTMLElement>>) => {
+	return locator.invoke('val').then($val => {
+		if (!$val) throw new Error('Value is undefined');
+		return $val;
+	});
+});
+
+Cypress.Commands.add('login', (username: string, password: string) => {
+	cy.session('login', () => {
+		cy.visit('/');
+		loginPage.enterUsername(username);
+		loginPage.enterPassword(password);
+		loginPage.submitLogin();
+		cy.url().should('contain', 'dashboard/index');
+	});
+});
+Cypress.Commands.add('loginSuccessful', () => {
+	cy.login('Admin', 'admin123');
+});
+
 //
 //
 // -- This is a child command --
@@ -25,13 +40,3 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }

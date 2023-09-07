@@ -1,21 +1,25 @@
 class LoginPage {
-	get = {
-		usernameInput: () => cy.get('[name=username]'),
-		passwordInput: () => cy.get('[type=password]'),
-		submitButton: () => cy.get('[type=submit]'),
-		forgotPasswordLink: () => cy.contains('Forgot your password?'),
-	};
+	usernameInput: () => Cypress.Chainable<JQuery<HTMLElement>>;
+	passwordInput: () => Cypress.Chainable<JQuery<HTMLElement>>;
+	submitButton: () => Cypress.Chainable<JQuery<HTMLElement>>;
+	forgotPasswordLink: () => Cypress.Chainable<undefined>;
+
+	constructor() {
+		this.usernameInput = () => cy.get('[name=username]');
+		this.passwordInput = () => cy.get('[type=password]');
+		this.submitButton = () => cy.get('[type=submit]');
+		this.forgotPasswordLink = () => cy.contains('Forgot your password?');
+	}
 
 	// * Methods
-
 	async enterUsername(text: string) {
-		this.get.usernameInput().type(text);
+		this.usernameInput().type(text);
 	}
 	async enterPassword(text: string) {
-		this.get.passwordInput().type(text);
+		this.passwordInput().type(text);
 	}
 	async submitLogin() {
-		this.get.submitButton().click();
+		this.submitButton().click();
 	}
 }
 

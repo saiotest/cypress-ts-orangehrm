@@ -11,5 +11,6 @@
 			"@util/*": ["./cypress/support/utils/*"]
 		}
 	},
+	"include": ["**/*.ts", "cypress.d.ts"],
 	"exclude": ["node_modules"]
 }
