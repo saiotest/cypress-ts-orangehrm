@@ -13,5 +13,9 @@ declare global {
 
 			loginSuccessful(): void;
 		}
+
+		interface endpoint {
+			buzz: '/buzz/viewBuzz';
+		}
 	}
 }

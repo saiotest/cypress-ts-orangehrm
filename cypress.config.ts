@@ -17,4 +17,9 @@ export default defineConfig({
 			on('file:preprocessor', createBundler());
 		},
 	},
+	env: {
+		ep: {
+			buzz: '/buzz/viewBuzz',
+		},
+	},
 });
