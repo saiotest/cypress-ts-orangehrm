@@ -4,11 +4,13 @@
 		"strict": true,
 		"target": "es5",
 		"lib": ["es5", "dom"],
-		"types": ["cypress", "node"],
+		"types": ["cypress", "node", "cypress-plugin-api"],
 		"paths": {
 			"@pages/*": ["./cypress/support/pages/*"],
+			"@api/*": ["./cypress/support/apis/*"],
 			"@data/*": ["./cypress/fixtures/data/*"],
-			"@util/*": ["./cypress/support/utils/*"]
+			"@util/*": ["./cypress/support/utils/*"],
+			"@apiTypes": ["./cypress/support/interfaces/apiTypes.ts"]
 		}
 	},
 	"include": ["**/*.ts", "cypress.d.ts"],

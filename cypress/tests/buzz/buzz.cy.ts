@@ -1,8 +1,8 @@
 import { buzz } from '@pages/BuzzPage';
 
-const ep: Cypress.endpoint = Cypress.env('ep');
+const ep: Cypress.page = Cypress.env('ep');
 
-describe('Testing Orange', () => {
+describe('Verify Buzz Features', () => {
 	beforeEach('Login and go to the Buzz Page', () => {
 		cy.loginSuccessful();
 		cy.visit(ep.buzz);
