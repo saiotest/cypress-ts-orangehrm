@@ -19,7 +19,7 @@ export default defineConfig({
 		},
 	},
 	env: {
-		secret: process.env.API_SECRET_KEY,
+		apikey: process.env.API_PUBLIC_KEY,
 		ep: {
 			buzz: '/buzz/viewBuzz',
 		},

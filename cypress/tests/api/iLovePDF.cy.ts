@@ -1,39 +1,23 @@
-import type { startResponse, tokenResponse } from '@apiTypes';
+import { fileConverterAPI } from '@api/iLovePdfAPI';
+import { uncaughtExpection } from '@util/logs';
+uncaughtExpection();
 
-const api: Cypress.api = Cypress.env('api');
-const secret: string = Cypress.env('secret');
+describe('Verify converting JPG into PDF', () => {
+	let bearerToken: string;
 
-describe('Verify converting PDF into JPG', () => {
-	beforeEach('Auth: Get a BearerToken', () => {
+	beforeEach('Auth: Get BearerToken', () => {
 		cy.viewport(1080, 720);
-		const endpoint = api.domain + api.auth;
-		cy.api({
-			method: 'Post',
-			url: endpoint,
-			body: {
-				public_key: secret,
-			},
-		}).then(response => {
-			expect(response.status).equal(200);
-			const json: tokenResponse = response.body;
-			Cypress.env('bearerToken', json.token);
+		cy.getApiToken().then(token => {
+			bearerToken = token;
 		});
 	});
 
-	it('Get a Server and a Task', () => {
-		const givenProcess = '/pdfjpg';
-		const endpoint = api.domain + api.start + givenProcess;
-		cy.api({
-			method: 'GET',
-			url: endpoint,
-			auth: {
-				bearer: Cypress.env('bearerToken'),
-			},
-		}).then(response => {
-			const json: startResponse = response.body;
+	it('Should convert PDF into JPG successffully', () => {
+		const api = fileConverterAPI(bearerToken);
+		const givenFile = 'https://cdn.pixabay.com/photo/2023/06/20/01/30/ai-generated-8075768_640.jpg';
+
+		api.convertImageToPDF(givenFile, 'test.jpg').then(response => {
 			expect(response.status).equal(200);
-			Cypress.env('givenServer', json.server);
-			Cypress.env('givenTaskID', json.task);
 		});
 	});
 });

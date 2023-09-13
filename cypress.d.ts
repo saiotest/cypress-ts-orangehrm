@@ -13,6 +13,8 @@ declare global {
 			login(username: string, password: string): void;
 
 			loginSuccessful(): void;
+
+			getApiToken(): Cypress.Chainable<string>;
 		}
 
 		interface page {
