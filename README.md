@@ -2,7 +2,7 @@
 
 [![vscode-logo]][vscode-site] [![cypress-logo]][cypress-site] [![javascript-logo]][javascript-site]
 
-# 🧪Testing Automation - Cypress 13👨🏻‍🚀 + Cucumber
+# 🧪Testing Automation - Cypress 13👨🏻‍🚀 + TypeScript
 
 ![UPEX's Banners (linkedin) (1)](https://user-images.githubusercontent.com/91127281/189470339-acea5782-16f1-4f06-9ce0-df54fd3ead9d.png)
 
@@ -24,17 +24,17 @@ Ahora el Directorio de UPEX Galaxy, será mucho más simple.
     ```
     {GX-ID}-{NombreCortoDeLaStory}
 
-    como ejemplo: "GX-5-AgregarItemAlCart.cy.js".
+    como ejemplo: "GX-5-AgregarItemAlCart.cy.ts".
 
     ejemplo de estructura:
     /Tests
     	├───BookStore
-    	│       GX-6309-CrearObtenerLibros.cy.js
+    	│       GX-6309-CrearObtenerLibros.cy.ts
     ```
 
 -   En cuanto a la carpeta `cucumber-tests`:
 
-    -   Tendrán una mejor distribución de archivos; por carpetas separadas: Todos los archivos `.feature` dentro de la carpeta "Gherkin" y los archivos `.js` dentro de
+    -   Tendrán una mejor distribución de archivos; por carpetas separadas: Todos los archivos `.feature` dentro de la carpeta "Gherkin" y los archivos `.ts` dentro de
         "stepDefinitions" como tiene que ser.
 
     ```
@@ -45,7 +45,7 @@ Ahora el Directorio de UPEX Galaxy, será mucho más simple.
     	│       GX-2_StoryTestSuite.feature
     	│
     	└───stepDefinitions
-    			GX-2_StoryTestSuite.js
+    			GX-2_StoryTestSuite.ts
     ```
 
     -   La Nomenclatura de éste tipo de prueba se mantiene igual al normal (la misma nomenclatura mencionada arriba).
@@ -103,7 +103,7 @@ Ahora el Directorio de UPEX Galaxy, será mucho más simple.
         ```
         npm run report:cucumber
         ```
-        - donde la variable "report:cucumber" es igual a: `node ./cucumber-html-report.js` cuyo atajo es para generar el Reporte Cucumber index.html en la carpeta
+        - donde la variable "report:cucumber" es igual a: `node ./cucumber-html-report.ts` cuyo atajo es para generar el Reporte Cucumber index.html en la carpeta
           `reports/cucumber-html-report` para evaluar TODOS el Resultado de Prueba Cucumber.
 
 ---
@@ -130,8 +130,8 @@ Ahora el Directorio de UPEX Galaxy, será mucho más simple.
 
 ### 🚩NORMATIVAS A SEGUIR:
 
-1. Perfecta Nomenclatura del nombre de Archivo de prueba: <br> `{GX-ID}-{StoryShortName}.{extensionFile} ej: GX-50-AgregarItemsAlCart.cy.js`
-2. Archivo de Prueba dentro del directorio del Componente correspondiente, ejemplo: <br> `cypress/e2e/Tests/ComponentName/GX-1-StoryTestSuite.cy.js`.
+1. Perfecta Nomenclatura del nombre de Archivo de prueba: <br> `{GX-ID}-{StoryShortName}.{extensionFile} ej: GX-50-AgregarItemsAlCart.cy.ts`
+2. Archivo de Prueba dentro del directorio del Componente correspondiente, ejemplo: <br> `cypress/e2e/Tests/ComponentName/GX-1-StoryTestSuite.cy.ts`.
 3. Buen diseño del Test Suite elaborado (Esto implica que se vean bien el código en general, que al menos funcione).
 4. Tener el Markdown de la US en la carpeta Test-Plan en su correspondiente carpeta Sprint, ejemplo: <br> `cypress/test-plan/in-sprint/sprint-9/userStory.md`<br> Esto implica que
    cada vez que se trabaje en un Sprint nuevo, se debería crear la carpeta correspondiente "sprint-" + número del sprint, como se muestra en el ejemplo arriba.
@@ -142,13 +142,13 @@ Ahora el Directorio de UPEX Galaxy, será mucho más simple.
    repetitivas (Background).
 
 7. **En caso de usar Fixtures**: Chequear que el archivo ".json" esté dentro de la carpeta correspondiente al componente, ejemplo: <br> `cypress/fixtures/account/example.json`.
-8. **En caso de usar PageObjectModel**: Chequear que el "Page.js" esté dentro de la carpeta "pages" en la de "support", ejemplo: <br> `cypress/support/pages/example.Page.js`.
+8. **En caso de usar PageObjectModel**: Chequear que el "Page.ts" esté dentro de la carpeta "pages" en la de "support", ejemplo: <br> `cypress/support/pages/example.Page.ts`.
 9. **En caso de usar Commands**: Asegurarse de aplicarlo para crear pasos de Precondiciones o Scripts de Algoritmos complejos (NO USAR como Pasos de Acción, eso sería tarea para el
    POM).
 10. **En caso de usar el CI Pipeline**: Usar únicamente el archivo predeterminado del proyecto `sanity.yml`, y asegurarse de modificarlo correctamente (Solo cambiar el Path del
     Test Suite y el parámetro de Importación TX para Jira) y no borrar o cambiar nada más, que funcione y pase los Checks. El archivo `regression.yml` se ejecutará automaticamente
     cuando los cambios hayan mergeado a QA.
-11. **En caso de usar Cucumber**: Chequear que el archivo Gherkin (.feature) y los StepDefinitions (.js) estén correctamente diseñados y que la Ejecución en CI funcione y pase los
+11. **En caso de usar Cucumber**: Chequear que el archivo Gherkin (.feature) y los StepDefinitions (.ts) estén correctamente diseñados y que la Ejecución en CI funcione y pase los
     Checks.
 
 ---
